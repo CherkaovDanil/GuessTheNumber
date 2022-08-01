@@ -18,6 +18,10 @@ namespace Game.UI.UIGameWindow
         [SerializeField] private Button _9numberButton;
         [SerializeField] private Button _0numberButton;
 
+        [SerializeField] private Text _equation;
+        [SerializeField] private Text _inputField;
+
+
         public override void Show()
         {
             ShowEvent?.Invoke(this, EventArgs.Empty);
@@ -146,6 +150,16 @@ namespace Game.UI.UIGameWindow
         private void On_0_OfTheNumberButtonClickEventHandler()
         {
             On_0_OfTheNumberButtonClickEvent?.Invoke(this,EventArgs.Empty);
+        }
+
+        public Text GetTheEquationText()
+        {
+            return _equation;
+        }
+
+        public Text GetInputFiled()
+        {
+            return _inputField;
         }
     }
 }
