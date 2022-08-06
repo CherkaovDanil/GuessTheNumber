@@ -8,16 +8,19 @@ namespace Game.UI
     {
         private readonly IUIService _uiService;
         private readonly UIGameWindowController _uiGameWindowController;
+        private readonly UIFadeController _uiFadeController;
 
         private UIMainMenuWindow _uiMainMenuWindow;
         
         
         public UIMainMenuWindowController(
             IUIService uiService,
-            UIGameWindowController uiGameWindowController)
+            UIGameWindowController uiGameWindowController, 
+            UIFadeController uiFadeController)
         {
             _uiService = uiService;
             _uiGameWindowController = uiGameWindowController;
+            _uiFadeController = uiFadeController;
 
             _uiMainMenuWindow = _uiService.Get<UIMainMenuWindow>();
 
@@ -26,6 +29,10 @@ namespace Game.UI
             _uiMainMenuWindow.OnExitButtonClickEvent += OnExitButtonClickEventHandler;
             
             _uiService.Show<UIMainMenuWindow>();
+            
+            _uiService.Show<UIFadeWindow>();
+            
+            _uiFadeController.FadeOut();
         }
         
         private void OnPlayButtonClickEventHandler(object sender, EventArgs e)

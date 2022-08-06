@@ -54,6 +54,12 @@ namespace Game.UI.UIFramework.Installer
                 .Bind<UIDeathMenuController>()
                 .AsSingle()
                 .NonLazy();
+            
+            Container
+                .Bind<UIFadeController>()
+                .AsSingle()
+                .NonLazy();
+            
         }
     }
 }
