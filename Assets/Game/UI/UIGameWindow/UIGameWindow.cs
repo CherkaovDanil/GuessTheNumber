@@ -3,23 +3,25 @@ using Game.UI.UIFramework.Realization;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Game.UI.UIGameWindow
+namespace Game.UI
 {
     public class UIGameWindow : UICanvasWindow
     {
-        [SerializeField] private Button _1numberButton;
-        [SerializeField] private Button _2numberButton;
-        [SerializeField] private Button _3numberButton;
-        [SerializeField] private Button _4numberButton;
-        [SerializeField] private Button _5numberButton;
-        [SerializeField] private Button _6numberButton;
-        [SerializeField] private Button _7numberButton;
-        [SerializeField] private Button _8numberButton;
-        [SerializeField] private Button _9numberButton;
-        [SerializeField] private Button _0numberButton;
+        [SerializeField] private Button buttonWithNumberOne;
+        [SerializeField] private Button buttonWithNumberTwo;
+        [SerializeField] private Button buttonWithNumberThree;
+        [SerializeField] private Button buttonWithNumberFour;
+        [SerializeField] private Button buttonWithNumberFive;
+        [SerializeField] private Button buttonWithNumberSix;
+        [SerializeField] private Button buttonWithNumberSeven;
+        [SerializeField] private Button buttonWithNumberEight;
+        [SerializeField] private Button buttonWithNumerNine;
+        [SerializeField] private Button buttonWithNumberZero;
+        
+        [SerializeField] private Button mainMenuButton;
 
-        [SerializeField] private Text _equation;
-        [SerializeField] private Text _inputField;
+        [SerializeField] private Text equation;
+        [SerializeField] private Text inputField;
 
 
         public override void Show()
@@ -27,16 +29,18 @@ namespace Game.UI.UIGameWindow
             ShowEvent?.Invoke(this, EventArgs.Empty);
             gameObject.SetActive(true);
         
-            _1numberButton.onClick.AddListener(On_1_OfTheNumberButtonClickEventHandler);
-            _2numberButton.onClick.AddListener(On_2_OfTheNumberButtonClickEventHandler);
-            _3numberButton.onClick.AddListener(On_3_OfTheNumberButtonClickEventHandler);
-            _4numberButton.onClick.AddListener(On_4_OfTheNumberButtonClickEventHandler);
-            _5numberButton.onClick.AddListener(On_5_OfTheNumberButtonClickEventHandler);
-            _6numberButton.onClick.AddListener(On_6_OfTheNumberButtonClickEventHandler);
-            _7numberButton.onClick.AddListener(On_7_OfTheNumberButtonClickEventHandler);
-            _8numberButton.onClick.AddListener(On_8_OfTheNumberButtonClickEventHandler);
-            _9numberButton.onClick.AddListener(On_9_OfTheNumberButtonClickEventHandler);
-            _0numberButton.onClick.AddListener(On_0_OfTheNumberButtonClickEventHandler);
+            buttonWithNumberOne.onClick.AddListener(OnOneOfTheNumberButtonClickEventHandler);
+            buttonWithNumberTwo.onClick.AddListener(OnTwoOfTheNumberButtonClickEventHandler);
+            buttonWithNumberThree.onClick.AddListener(OnThreeOfTheNumberButtonClickEventHandler);
+            buttonWithNumberFour.onClick.AddListener(OnFourOfTheNumberButtonClickEventHandler);
+            buttonWithNumberFive.onClick.AddListener(OnFiveOfTheNumberButtonClickEventHandler);
+            buttonWithNumberSix.onClick.AddListener(OnSixOfTheNumberButtonClickEventHandler);
+            buttonWithNumberSeven.onClick.AddListener(OnSevenOfTheNumberButtonClickEventHandler);
+            buttonWithNumberEight.onClick.AddListener(OnEightOfTheNumberButtonClickEventHandler);
+            buttonWithNumerNine.onClick.AddListener(OnNineOfTheNumberButtonClickEventHandler);
+            buttonWithNumberZero.onClick.AddListener(OnZeroOfTheNumberButtonClickEventHandler);
+            
+            mainMenuButton.onClick.AddListener(OnMenuButtonClickEventHandler);
         }
 
         public override void Hide()
@@ -44,122 +48,134 @@ namespace Game.UI.UIGameWindow
             HideEvent?.Invoke(this,EventArgs.Empty);
             gameObject.SetActive(false);
             
-            _1numberButton.onClick.RemoveListener(On_1_OfTheNumberButtonClickEventHandler);
-            _2numberButton.onClick.RemoveListener(On_2_OfTheNumberButtonClickEventHandler);
-            _3numberButton.onClick.RemoveListener(On_3_OfTheNumberButtonClickEventHandler);
-            _4numberButton.onClick.RemoveListener(On_4_OfTheNumberButtonClickEventHandler);
-            _5numberButton.onClick.RemoveListener(On_5_OfTheNumberButtonClickEventHandler);
-            _6numberButton.onClick.RemoveListener(On_6_OfTheNumberButtonClickEventHandler);
-            _7numberButton.onClick.RemoveListener(On_7_OfTheNumberButtonClickEventHandler);
-            _8numberButton.onClick.RemoveListener(On_8_OfTheNumberButtonClickEventHandler);
-            _9numberButton.onClick.RemoveListener(On_9_OfTheNumberButtonClickEventHandler);
-            _0numberButton.onClick.RemoveListener(On_0_OfTheNumberButtonClickEventHandler);
+            buttonWithNumberOne.onClick.RemoveListener(OnOneOfTheNumberButtonClickEventHandler);
+            buttonWithNumberTwo.onClick.RemoveListener(OnTwoOfTheNumberButtonClickEventHandler);
+            buttonWithNumberThree.onClick.RemoveListener(OnThreeOfTheNumberButtonClickEventHandler);
+            buttonWithNumberFour.onClick.RemoveListener(OnFourOfTheNumberButtonClickEventHandler);
+            buttonWithNumberFive.onClick.RemoveListener(OnFiveOfTheNumberButtonClickEventHandler);
+            buttonWithNumberSix.onClick.RemoveListener(OnSixOfTheNumberButtonClickEventHandler);
+            buttonWithNumberSeven.onClick.RemoveListener(OnSevenOfTheNumberButtonClickEventHandler);
+            buttonWithNumberEight.onClick.RemoveListener(OnEightOfTheNumberButtonClickEventHandler);
+            buttonWithNumerNine.onClick.RemoveListener(OnNineOfTheNumberButtonClickEventHandler);
+            buttonWithNumberZero.onClick.RemoveListener(OnZeroOfTheNumberButtonClickEventHandler);
+            
+            mainMenuButton.onClick.RemoveListener(OnMenuButtonClickEventHandler);
         }
-    
-        public EventHandler On_1_OfTheNumberButtonClickEvent
+        public EventHandler OnMenuButtonClickEvent
+        {
+            get;
+            set;
+        }
+        
+        public EventHandler OnOneOfTheNumberButtonClickEvent
         {
             get;
             set;
         }
     
-        public EventHandler On_2_OfTheNumberButtonClickEvent
+        public EventHandler OnTwoOfTheNumberButtonClickEvent
         {
             get;
             set;
         }
     
-        public EventHandler On_3_OfTheNumberButtonClickEvent
+        public EventHandler OnThreeOfTheNumberButtonClickEvent
         {
             get;
             set;
         }
-        public EventHandler On_4_OfTheNumberButtonClickEvent
+        public EventHandler OnFourOfTheNumberButtonClickEvent
         {
             get;
             set;
         }
-        public EventHandler On_5_OfTheNumberButtonClickEvent
+        public EventHandler OnFiveOfTheNumberButtonClickEvent
         {
             get;
             set;
         }
-        public EventHandler On_6_OfTheNumberButtonClickEvent
+        public EventHandler OnSixOfTheNumberButtonClickEvent
         {
             get;
             set;
         }
-        public EventHandler On_7_OfTheNumberButtonClickEvent
+        public EventHandler OnSevenOfTheNumberButtonClickEvent
         {
             get;
             set;
         }
-        public EventHandler On_8_OfTheNumberButtonClickEvent
-        {
-            get;
-            set;
-        }
-    
-        public EventHandler On_9_OfTheNumberButtonClickEvent
-        {
-            get;
-            set;
-        }
-        public EventHandler On_0_OfTheNumberButtonClickEvent
+        public EventHandler OnEightOfTheNumberButtonClickEvent
         {
             get;
             set;
         }
     
+        public EventHandler OnNineOfTheNumberButtonClickEvent
+        {
+            get;
+            set;
+        }
+        public EventHandler OnZeroOfTheNumberButtonClickEvent
+        {
+            get;
+            set;
+        }
     
-        private void On_1_OfTheNumberButtonClickEventHandler()
+    
+        private void OnOneOfTheNumberButtonClickEventHandler()
         {
-            On_1_OfTheNumberButtonClickEvent?.Invoke(this,EventArgs.Empty);
+            OnOneOfTheNumberButtonClickEvent?.Invoke(this,EventArgs.Empty);
         }
-        private void On_2_OfTheNumberButtonClickEventHandler()
+        private void OnTwoOfTheNumberButtonClickEventHandler()
         {
-            On_2_OfTheNumberButtonClickEvent?.Invoke(this,EventArgs.Empty);
+            OnTwoOfTheNumberButtonClickEvent?.Invoke(this,EventArgs.Empty);
         }
-        private void On_3_OfTheNumberButtonClickEventHandler()
+        private void OnThreeOfTheNumberButtonClickEventHandler()
         {
-            On_3_OfTheNumberButtonClickEvent?.Invoke(this,EventArgs.Empty);
+            OnThreeOfTheNumberButtonClickEvent?.Invoke(this,EventArgs.Empty);
         }
-        private void On_4_OfTheNumberButtonClickEventHandler()
+        private void OnFourOfTheNumberButtonClickEventHandler()
         {
-            On_4_OfTheNumberButtonClickEvent?.Invoke(this,EventArgs.Empty);
+            OnFourOfTheNumberButtonClickEvent?.Invoke(this,EventArgs.Empty);
         }
-        private void On_5_OfTheNumberButtonClickEventHandler()
+        private void OnFiveOfTheNumberButtonClickEventHandler()
         {
-            On_5_OfTheNumberButtonClickEvent?.Invoke(this,EventArgs.Empty);
+            OnFiveOfTheNumberButtonClickEvent?.Invoke(this,EventArgs.Empty);
         } 
-        private void On_6_OfTheNumberButtonClickEventHandler()
+        private void OnSixOfTheNumberButtonClickEventHandler()
         {
-            On_6_OfTheNumberButtonClickEvent?.Invoke(this,EventArgs.Empty);
+            OnSixOfTheNumberButtonClickEvent?.Invoke(this,EventArgs.Empty);
         } 
-        private void On_7_OfTheNumberButtonClickEventHandler()
+        private void OnSevenOfTheNumberButtonClickEventHandler()
         {
-            On_7_OfTheNumberButtonClickEvent?.Invoke(this,EventArgs.Empty);
+            OnSevenOfTheNumberButtonClickEvent?.Invoke(this,EventArgs.Empty);
         } 
-        private void On_8_OfTheNumberButtonClickEventHandler()
+        private void OnEightOfTheNumberButtonClickEventHandler()
         {
-            On_8_OfTheNumberButtonClickEvent?.Invoke(this,EventArgs.Empty);
+            OnEightOfTheNumberButtonClickEvent?.Invoke(this,EventArgs.Empty);
         }
-        private void On_9_OfTheNumberButtonClickEventHandler()
+        private void OnNineOfTheNumberButtonClickEventHandler()
         {
-            On_9_OfTheNumberButtonClickEvent?.Invoke(this,EventArgs.Empty);
+            OnNineOfTheNumberButtonClickEvent?.Invoke(this,EventArgs.Empty);
         }
-        private void On_0_OfTheNumberButtonClickEventHandler()
+        private void OnZeroOfTheNumberButtonClickEventHandler()
         {
-            On_0_OfTheNumberButtonClickEvent?.Invoke(this,EventArgs.Empty);
+            OnZeroOfTheNumberButtonClickEvent?.Invoke(this,EventArgs.Empty);
+        }
+        
+        private void OnMenuButtonClickEventHandler()
+        {
+            OnMenuButtonClickEvent?.Invoke(this,EventArgs.Empty);
         }
 
         public Text GetTheEquationText()
         {
-            return _equation;
+            return equation;
         }
 
         public Text GetInputFiled()
         {
-            return _inputField;
+            return inputField;
         }
     }
 }

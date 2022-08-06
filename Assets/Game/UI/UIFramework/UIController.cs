@@ -6,8 +6,7 @@ namespace Game.UI.UIFramework
     {
         private readonly IInstantiator _instantiator; 
         
-        public UIController(
-        IInstantiator instantiator)
+        public UIController(IInstantiator instantiator)
         { 
             _instantiator = instantiator;
             

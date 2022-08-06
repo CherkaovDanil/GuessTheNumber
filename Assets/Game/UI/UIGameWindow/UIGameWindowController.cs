@@ -5,22 +5,26 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-namespace Game.UI.UIGameWindow
+namespace Game.UI
 {
     public class UIGameWindowController
     {
         private readonly IUIService _uiService;
-
+        
+        private const int _maxCountMistakes = 3;
+        
         private UIGameWindow _uiGameWindow;
         
         private Text _multipliedNumberText;
         private Text _inputField;
 
         private List<int> listOfNumbers;
+        private List<int> listOfUsingNumbers;
         private List<string> listOfNumbersString;
 
         private string _multipliedNumber;
-        private int index;
+        
+        private int _mistakeCounter;
 
         public UIGameWindowController(IUIService uiService)
         {
@@ -31,111 +35,175 @@ namespace Game.UI.UIGameWindow
             _multipliedNumberText = _uiGameWindow.GetTheEquationText();
             _inputField = _uiGameWindow.GetInputFiled();
 
-            _uiGameWindow.On_0_OfTheNumberButtonClickEvent += On_0_OfTheNumberButtonClickEventHandler;
-            _uiGameWindow.On_1_OfTheNumberButtonClickEvent += On_1_OfTheNumberButtonClickEventHandler;
-            _uiGameWindow.On_2_OfTheNumberButtonClickEvent += On_2_OfTheNumberButtonClickEventHandler;
-            _uiGameWindow.On_3_OfTheNumberButtonClickEvent += On_3_OfTheNumberButtonClickEventHandler;
-            _uiGameWindow.On_4_OfTheNumberButtonClickEvent += On_4_OfTheNumberButtonClickEventHandler;
-            _uiGameWindow.On_5_OfTheNumberButtonClickEvent += On_5_OfTheNumberButtonClickEventHandler;
-            _uiGameWindow.On_6_OfTheNumberButtonClickEvent += On_6_OfTheNumberButtonClickEventHandler;
-            _uiGameWindow.On_7_OfTheNumberButtonClickEvent += On_7_OfTheNumberButtonClickEventHandler;
-            _uiGameWindow.On_8_OfTheNumberButtonClickEvent += On_8_OfTheNumberButtonClickEventHandler;
-            _uiGameWindow.On_9_OfTheNumberButtonClickEvent += On_9_OfTheNumberButtonClickEventHandler;
+            _uiGameWindow.OnZeroOfTheNumberButtonClickEvent += OnZeroOfTheNumberButtonClickEventHandler;
+            _uiGameWindow.OnOneOfTheNumberButtonClickEvent += OnOneOfTheNumberButtonClickEventHandler;
+            _uiGameWindow.OnTwoOfTheNumberButtonClickEvent += OnTwoOfTheNumberButtonClickEventHandler;
+            _uiGameWindow.OnThreeOfTheNumberButtonClickEvent += OnThreeOfTheNumberButtonClickEventHandler;
+            _uiGameWindow.OnFourOfTheNumberButtonClickEvent += OnFourTheNumberButtonClickEventHandler;
+            _uiGameWindow.OnFiveOfTheNumberButtonClickEvent += OnFiveOfTheNumberButtonClickEventHandler;
+            _uiGameWindow.OnSixOfTheNumberButtonClickEvent += OnSixOfTheNumberButtonClickEventHandler;
+            _uiGameWindow.OnSevenOfTheNumberButtonClickEvent += OnSevenOfTheNumberButtonClickEventHandler;
+            _uiGameWindow.OnEightOfTheNumberButtonClickEvent += OnEightOfTheNumberButtonClickEventHandler;
+            _uiGameWindow.OnNineOfTheNumberButtonClickEvent += OnNineOfTheNumberButtonClickEventHandler;
+            
+            _uiGameWindow.OnMenuButtonClickEvent +=OnMenuButtonClickEventHandler;
 
             listOfNumbers = new List<int>();
+            listOfUsingNumbers = new List<int>();
             listOfNumbersString = new List<string>();
-
-            GenerateNumber();
-
-            _uiService.Show<UIGameWindow>();
         }
 
-        private void GenerateNumber()
+        public void StartNewGame()
         {
+            listOfNumbers.Clear();
+            listOfUsingNumbers.Clear();
+            listOfNumbersString.Clear();
+            _inputField.text = String.Empty;
+
+            _mistakeCounter = 0;
+            
+            
             var firstNumber = Random.Range(0, 1000);
             var secondNumber = Random.Range(0, 1000);
 
             _multipliedNumber = (firstNumber * secondNumber).ToString();
             _multipliedNumberText.text = $"{firstNumber} x {secondNumber} = {_multipliedNumber}";
 
-
             for (int i = 0; i < _multipliedNumber.Length; i++)
             {
                 listOfNumbers.Add(int.Parse(_multipliedNumber[i].ToString()));
                 listOfNumbersString.Add("_ ");
             }
-            
-            for (int i = 0; i < listOfNumbersString.Count; i++)
+
+            for (int i = 0; i < listOfNumbers.Count; i++)
             {
                 _inputField.text += listOfNumbersString[i];
             }
         }
 
-        private void On_0_OfTheNumberButtonClickEventHandler(object sender, EventArgs e)
+        #region ClickEventHadlerRegion
+
+        private void OnZeroOfTheNumberButtonClickEventHandler(object sender, EventArgs e)
         {
             CheckTheNumberInNumber(0);
         }
 
-        private void On_1_OfTheNumberButtonClickEventHandler(object sender, EventArgs e)
+        private void OnOneOfTheNumberButtonClickEventHandler(object sender, EventArgs e)
         {
             CheckTheNumberInNumber(1);
         }
 
-        private void On_2_OfTheNumberButtonClickEventHandler(object sender, EventArgs e)
+        private void OnTwoOfTheNumberButtonClickEventHandler(object sender, EventArgs e)
         {
             CheckTheNumberInNumber(2);
         }
 
-        private void On_3_OfTheNumberButtonClickEventHandler(object sender, EventArgs e)
+        private void OnThreeOfTheNumberButtonClickEventHandler(object sender, EventArgs e)
         {
             CheckTheNumberInNumber(3);
         }
 
-        private void On_4_OfTheNumberButtonClickEventHandler(object sender, EventArgs e)
+        private void OnFourTheNumberButtonClickEventHandler(object sender, EventArgs e)
         {
             CheckTheNumberInNumber(4);
         }
 
-        private void On_5_OfTheNumberButtonClickEventHandler(object sender, EventArgs e)
+        private void OnFiveOfTheNumberButtonClickEventHandler(object sender, EventArgs e)
         {
             CheckTheNumberInNumber(5);
         }
 
-        private void On_6_OfTheNumberButtonClickEventHandler(object sender, EventArgs e)
+        private void OnSixOfTheNumberButtonClickEventHandler(object sender, EventArgs e)
         {
             CheckTheNumberInNumber(6);
         }
 
-        private void On_7_OfTheNumberButtonClickEventHandler(object sender, EventArgs e)
+        private void OnSevenOfTheNumberButtonClickEventHandler(object sender, EventArgs e)
         {
             CheckTheNumberInNumber(7);
         }
 
-        private void On_8_OfTheNumberButtonClickEventHandler(object sender, EventArgs e)
+        private void OnEightOfTheNumberButtonClickEventHandler(object sender, EventArgs e)
         {
             CheckTheNumberInNumber(8);
         }
 
-        private void On_9_OfTheNumberButtonClickEventHandler(object sender, EventArgs e)
+        private void OnNineOfTheNumberButtonClickEventHandler(object sender, EventArgs e)
         {
             CheckTheNumberInNumber(9);
         }
+        private void OnMenuButtonClickEventHandler(object sender, EventArgs e)
+        {
+            _uiService.Hide<UIGameWindow>();
+            _uiService.Show<UIMainMenuWindow>();
+        }
 
+        #endregion
+        
+        
         private void CheckTheNumberInNumber(int number)
         {
-            Debug.Log(listOfNumbers[0]);
-
-            if (listOfNumbers[0] == number)
+            if (listOfUsingNumbers.Contains(number))
             {
-                listOfNumbersString[index] = number.ToString();
-                index++;
-                _inputField.text = String.Empty;
+                AddPartOfBody();
+            }
+            else
+            {
+                PrintTheNumber(number);
+            }
+        }
+        
+        
+        private void AddPartOfBody()
+        {
+            _mistakeCounter++;
+            if (_mistakeCounter >= _maxCountMistakes)
+            {
+                EndGame();
+            }
+            else
+            {
+                
+            }
+        }
 
-                for (int i = 0; i < listOfNumbersString.Count; i++)
+        private void EndGame()
+        {
+            _uiService.Show<UIDeathWindow>();
+            _uiService.Hide<UIGameWindow>();
+        }
+
+        private void PrintTheNumber(int number)
+        {
+            _inputField.text = String.Empty;
+            
+            listOfUsingNumbers.Add(number);
+
+            var listOfIndexs = new List<int>();
+                
+            for (int i = 0; i < listOfNumbers.Count; i++)
+            {
+                if (listOfNumbers[i] == number)
                 {
-                    _inputField.text += listOfNumbersString[i];
+                    listOfIndexs.Add(i);
                 }
-                listOfNumbers.RemoveAt(0);
+            }
+
+            foreach (var index in listOfIndexs)
+            {
+                listOfNumbersString[index] = $"{number} ";
+            }
+
+            for (int i = 0; i < listOfNumbers.Count; i++)
+            {
+                _inputField.text += listOfNumbersString[i];
+            }
+
+
+            if (!listOfNumbersString.Contains("_ "))
+            {
+                _uiService.Hide<UIGameWindow>();
+                _uiService.Show<UIWinWindow>();
             }
         }
     }

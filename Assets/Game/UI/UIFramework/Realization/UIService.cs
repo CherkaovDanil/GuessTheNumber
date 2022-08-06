@@ -75,9 +75,6 @@ namespace Game.UI.UIFramework.Realization
                 var windowType = window.GetType();
                 _viewStorage.Add(windowType, (UICanvasWindow) window);
             }
-
-            //SetCameraForCanvas(GameObject.Find("CenterEyeAnchor").GetComponent<Camera>());
-            //SetCanvasPos(GameObject.Find("Back(Clone)").GetComponent<Transform>());
         }    
     
         private void Init(Type t, Transform parent = null)
@@ -95,25 +92,6 @@ namespace Game.UI.UIFramework.Realization
                 }
                 _initWindows.Add(t, view);
             }
-        }
-
-        private void SetCameraForCanvas(Camera camera)
-        {
-            _uIRoot.Camera = camera;
-            _uIRoot.Canvas.worldCamera = _uIRoot.Camera;
-        }
-
-        private void SetCanvasPos(Transform transform)
-        {
-            var rectTransform = _uIRoot.Canvas.GetComponent<RectTransform>();
-            var width = transform.localScale.x*53.56f;
-            var height = transform.localScale.y*54.2f;
-            rectTransform.position = transform.position;
-            rectTransform.sizeDelta = new Vector2(width, height);
-            rectTransform.anchorMin = Vector2.zero;
-            rectTransform.anchorMax = Vector2.zero;
-            rectTransform.pivot = new Vector2(0.5f, 0.5f);
-            rectTransform.localScale = new Vector3(1/(width/transform.localScale.x), 1/(height/transform.localScale.y));
         }
     }
 }

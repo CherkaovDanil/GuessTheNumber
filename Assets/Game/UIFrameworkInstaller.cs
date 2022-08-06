@@ -1,7 +1,6 @@
 using ArcadeSnake;
 using Game.UI.UIFramework.Interfaces;
 using Game.UI.UIFramework.Realization;
-using Game.UI.UIGameWindow;
 using UnityEngine;
 using Zenject;
 
@@ -36,16 +35,25 @@ namespace Game.UI.UIFramework.Installer
                 .AsSingle()
                 .NonLazy();
             
-            /*Container
-                .Bind<UIRulesController>()
+            Container
+                .Bind<UIMainMenuWindowController>()
                 .AsSingle()
                 .NonLazy();
             
             Container
-                .Bind<UIPlayingController>()
+                .Bind<UIRulesWindowController>()
                 .AsSingle()
-                .NonLazy();*/
-
+                .NonLazy();
+            
+            Container
+                .Bind<UIWinWindowController>()
+                .AsSingle()
+                .NonLazy();
+            
+            Container
+                .Bind<UIDeathMenuController>()
+                .AsSingle()
+                .NonLazy();
         }
     }
 }
