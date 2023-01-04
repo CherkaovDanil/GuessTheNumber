@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Game.UI.UIFramework.Interfaces;
-using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -9,9 +9,12 @@ namespace Game.UI
 {
     public class UIGameWindowController
     {
+        public UnityEvent OnAddBodyPart = new UnityEvent();
+        public UnityEvent OnResetAnimation = new UnityEvent();
+        
         private readonly IUIService _uiService;
         
-        private const int _maxCountMistakes = 3;
+        private const int _maxCountMistakes = 5;
         
         private UIGameWindow _uiGameWindow;
         
@@ -61,8 +64,7 @@ namespace Game.UI
             _inputField.text = String.Empty;
 
             _mistakeCounter = 0;
-            
-            
+
             var firstNumber = Random.Range(0, 100);
             var secondNumber = Random.Range(0, 100);
 
@@ -134,6 +136,7 @@ namespace Game.UI
         }
         private void OnMenuButtonClickEventHandler(object sender, EventArgs e)
         {
+            OnResetAnimation.Invoke();
             _uiService.Hide<UIGameWindow>();
             _uiService.Show<UIMainMenuWindow>();
         }
@@ -143,35 +146,31 @@ namespace Game.UI
         
         private void CheckTheNumberInNumber(int number)
         {
-            if (listOfUsingNumbers.Contains(number))
+            if (listOfUsingNumbers.Contains(number) || !listOfNumbers.Contains(number))
             {
                 AddPartOfBody();
             }
             else
             {
-                PrintTheNumber(number);
+               PrintTheNumber(number);
             }
         }
         
         
         private void AddPartOfBody()
         {
-            Debug.Log("add part");
+            OnAddBodyPart.Invoke();
             _mistakeCounter++;
             if (_mistakeCounter >= _maxCountMistakes)
             {
                 EndGame();
             }
-            else
-            {
-                
-            }
         }
 
         private void EndGame()
         {
-            _uiService.Show<UIDeathWindow>();
             _uiService.Hide<UIGameWindow>();
+            _uiService.Show<UIDeathWindow>();
         }
 
         private void PrintTheNumber(int number)

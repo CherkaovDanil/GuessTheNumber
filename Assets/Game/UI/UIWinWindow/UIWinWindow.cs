@@ -1,12 +1,15 @@
 ﻿using System;
 using Game.UI.UIFramework.Realization;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Game.UI
 {
     public class UIWinWindow: UICanvasWindow
     {
+        public UnityEvent OnResetAnimation = new UnityEvent();
+        
         [SerializeField] private Button playAgainButton;
         [SerializeField] private Button mainMenuButton;
         
@@ -30,10 +33,12 @@ namespace Game.UI
         
         private void PlayAgainButtonClickEventHandler()
         {
+            OnResetAnimation.Invoke();
             PlayAgainButtonClickEvent?.Invoke(this,EventArgs.Empty);
         }
         private void MainMenuButtonClickEventHandler()
         {
+            OnResetAnimation.Invoke();
             MainMenuButtonClickEvent?.Invoke(this,EventArgs.Empty);
         }
         
