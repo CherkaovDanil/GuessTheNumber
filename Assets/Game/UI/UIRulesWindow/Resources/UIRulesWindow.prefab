@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 0, y: 72}
+  m_SizeDelta: {x: 699, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &365800169933300481
 CanvasRenderer:
@@ -75,10 +75,10 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 1
+    m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Text of  rules .....
+  m_Text: You need to guess the number that will be the result of multiplying numbers
 --- !u!1 &2149255593219008397
 GameObject:
   m_ObjectHideFlags: 0

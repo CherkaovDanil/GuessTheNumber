@@ -63,8 +63,8 @@ namespace Game.UI
             _mistakeCounter = 0;
             
             
-            var firstNumber = Random.Range(0, 1000);
-            var secondNumber = Random.Range(0, 1000);
+            var firstNumber = Random.Range(0, 100);
+            var secondNumber = Random.Range(0, 100);
 
             _multipliedNumber = (firstNumber * secondNumber).ToString();
             _multipliedNumberText.text = $"{firstNumber} x {secondNumber} = {_multipliedNumber}";
@@ -156,6 +156,7 @@ namespace Game.UI
         
         private void AddPartOfBody()
         {
+            Debug.Log("add part");
             _mistakeCounter++;
             if (_mistakeCounter >= _maxCountMistakes)
             {
