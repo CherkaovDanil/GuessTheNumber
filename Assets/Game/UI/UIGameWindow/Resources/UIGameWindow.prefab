@@ -69,7 +69,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -30, y: -15}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6282440552528415810
@@ -102,11 +102,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: c77e7d7a767797d4f86586e3ccdca0ec, type: 3}
-    m_FontSize: 40
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
-    m_MaxSize: 40
+    m_MaxSize: 50
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1177,7 +1177,7 @@ MonoBehaviour:
   buttonWithNumberSix: {fileID: 3113352589151284912}
   buttonWithNumberSeven: {fileID: 3113352589068276924}
   buttonWithNumberEight: {fileID: 3113352589924712411}
-  buttonWithNumerNine: {fileID: 3113352589453602732}
+  buttonWithNumberNine: {fileID: 3113352589453602732}
   buttonWithNumberZero: {fileID: 3113352588350288841}
   mainMenuButton: {fileID: 2835730391701850398}
   equation: {fileID: 8776908254467495331}

@@ -14,7 +14,6 @@ namespace Game.UI
             ShowEvent?.Invoke(this, EventArgs.Empty);
             gameObject.SetActive(true);
             mainMenuButton.onClick.AddListener(OnMenuButtonClickEventHandler);
-            
         }
 
         public override void Hide()

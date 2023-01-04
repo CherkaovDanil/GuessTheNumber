@@ -25,6 +25,5 @@ namespace Game.UI.UIFramework.Realization
 
         protected virtual void OnShowEnd() { }
         protected virtual void OnHideEnd() { }
-
     }
 }

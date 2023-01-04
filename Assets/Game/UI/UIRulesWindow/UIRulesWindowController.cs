@@ -8,7 +8,6 @@ namespace Game.UI
         private readonly IUIService _uiService;
         
         private UIRulesWindow _uiRulesWindow;
-        
 
         public UIRulesWindowController(IUIService uiService)
         {
@@ -17,7 +16,6 @@ namespace Game.UI
             _uiRulesWindow = _uiService.Get<UIRulesWindow>();
 
             _uiRulesWindow.OnMenuButtonClickEvent += OnMenuButtonClickEventHandler;
-            
         }
         private void OnMenuButtonClickEventHandler(object sender, EventArgs e)
         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Game.UI.UIFramework.Interfaces;
+using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -12,10 +13,10 @@ namespace Game.UI
         public UnityEvent OnAddBodyPart = new UnityEvent();
         public UnityEvent OnResetAnimation = new UnityEvent();
         
-        private readonly IUIService _uiService;
-        
         private const int _maxCountMistakes = 5;
         
+        private readonly IUIService _uiService;
+
         private UIGameWindow _uiGameWindow;
         
         private Text _multipliedNumberText;
@@ -49,7 +50,7 @@ namespace Game.UI
             _uiGameWindow.OnEightOfTheNumberButtonClickEvent += OnEightOfTheNumberButtonClickEventHandler;
             _uiGameWindow.OnNineOfTheNumberButtonClickEvent += OnNineOfTheNumberButtonClickEventHandler;
             
-            _uiGameWindow.OnMenuButtonClickEvent +=OnMenuButtonClickEventHandler;
+            _uiGameWindow.OnMenuButtonClickEvent += OnMenuButtonClickEventHandler;
 
             listOfNumbers = new List<int>();
             listOfUsingNumbers = new List<int>();
@@ -69,6 +70,8 @@ namespace Game.UI
             var secondNumber = Random.Range(0, 100);
 
             _multipliedNumber = (firstNumber * secondNumber).ToString();
+            
+            //todo remove mult number
             _multipliedNumberText.text = $"{firstNumber} x {secondNumber} = {_multipliedNumber}";
 
             for (int i = 0; i < _multipliedNumber.Length; i++)
@@ -82,6 +85,76 @@ namespace Game.UI
                 _inputField.text += listOfNumbersString[i];
             }
         }
+        private void OnMenuButtonClickEventHandler(object sender, EventArgs e)
+        {
+            OnResetAnimation.Invoke();
+            _uiService.Hide<UIGameWindow>();
+            _uiService.Show<UIMainMenuWindow>();
+        }
+
+
+        private void CheckTheNumberInNumber(int number)
+        {
+            if (listOfUsingNumbers.Contains(number) || !listOfNumbers.Contains(number))
+            {
+                AddPartOfBody();
+            }
+            else
+            {
+                PrintTheNumber(number);
+            }
+        }
+
+        private void AddPartOfBody()
+        {
+            OnAddBodyPart.Invoke();
+            _mistakeCounter++;
+            if (_mistakeCounter >= _maxCountMistakes)
+            {
+                EndGame();
+            }
+        }
+
+        private void EndGame()
+        {
+            _uiService.Hide<UIGameWindow>();
+            _uiService.Show<UIDeathWindow>();
+        }
+
+        private void PrintTheNumber(int number)
+        {
+            _inputField.text = String.Empty;
+            
+            listOfUsingNumbers.Add(number);
+
+            var listOfIndexs = new List<int>();
+                
+            for (int i = 0; i < listOfNumbers.Count; i++)
+            {
+                if (listOfNumbers[i] == number)
+                {
+                    listOfIndexs.Add(i);
+                }
+            }
+
+            foreach (var index in listOfIndexs)
+            {
+                listOfNumbersString[index] = $"{number} ";
+            }
+
+            for (int i = 0; i < listOfNumbers.Count; i++)
+            {
+                _inputField.text += listOfNumbersString[i];
+            }
+
+
+            if (!listOfNumbersString.Contains("_ "))
+            {
+                _uiService.Hide<UIGameWindow>();
+                _uiService.Show<UIWinWindow>();
+            }
+        }
+        
 
         #region ClickEventHadlerRegion
 
@@ -134,77 +207,6 @@ namespace Game.UI
         {
             CheckTheNumberInNumber(9);
         }
-        private void OnMenuButtonClickEventHandler(object sender, EventArgs e)
-        {
-            OnResetAnimation.Invoke();
-            _uiService.Hide<UIGameWindow>();
-            _uiService.Show<UIMainMenuWindow>();
-        }
-
         #endregion
-        
-        
-        private void CheckTheNumberInNumber(int number)
-        {
-            if (listOfUsingNumbers.Contains(number) || !listOfNumbers.Contains(number))
-            {
-                AddPartOfBody();
-            }
-            else
-            {
-               PrintTheNumber(number);
-            }
-        }
-        
-        
-        private void AddPartOfBody()
-        {
-            OnAddBodyPart.Invoke();
-            _mistakeCounter++;
-            if (_mistakeCounter >= _maxCountMistakes)
-            {
-                EndGame();
-            }
-        }
-
-        private void EndGame()
-        {
-            _uiService.Hide<UIGameWindow>();
-            _uiService.Show<UIDeathWindow>();
-        }
-
-        private void PrintTheNumber(int number)
-        {
-            _inputField.text = String.Empty;
-            
-            listOfUsingNumbers.Add(number);
-
-            var listOfIndexs = new List<int>();
-                
-            for (int i = 0; i < listOfNumbers.Count; i++)
-            {
-                if (listOfNumbers[i] == number)
-                {
-                    listOfIndexs.Add(i);
-                }
-            }
-
-            foreach (var index in listOfIndexs)
-            {
-                listOfNumbersString[index] = $"{number} ";
-            }
-
-            for (int i = 0; i < listOfNumbers.Count; i++)
-            {
-                _inputField.text += listOfNumbersString[i];
-            }
-
-
-            if (!listOfNumbersString.Contains("_ "))
-            {
-                _uiService.Hide<UIGameWindow>();
-                _uiService.Show<UIWinWindow>();
-            }
-        }
     }
 }

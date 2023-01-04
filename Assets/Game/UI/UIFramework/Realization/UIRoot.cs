@@ -7,7 +7,7 @@ namespace ArcadeSnake
     public class UIRoot : MonoBehaviour, IUIRoot
     {
         [SerializeField] private Canvas canvas;
-        [SerializeField] private Camera _camera;
+        [SerializeField] private Camera camera;
         [SerializeField] private Transform container;
         [SerializeField] private Transform poolContainer;
 
@@ -19,8 +19,8 @@ namespace ArcadeSnake
         
         public Camera Camera
         {
-            get => _camera;
-            set => _camera = value;
+            get => camera;
+            set => camera = value;
         }
 
         public Transform Container => container;

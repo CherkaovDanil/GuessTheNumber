@@ -1,4 +1,3 @@
-using System;
 using Game.UI;
 using Game.UI.UIFramework.Interfaces;
 using UnityEngine;
@@ -9,27 +8,20 @@ public class BodyAnimation : MonoBehaviour
     [SerializeField] private GameObject[] bodyParts;
     [SerializeField] private ParticleSystem particleSystem;
 
-    private UIGameWindowController _uiGameWindowController;
-    private UIDeathWindow _uiDeathWindow;
-    private UIWinWindow _uiWinWindow;
-    
     private int _counter;
-
 
     [Inject]
     private void Inject(
         UIGameWindowController uiGameWindowController,
+        UIDeathMenuController uiDeathMenuController,
+        UIWinWindowController uiWinWindowController,
         IUIService uiService)
     {
-        _uiGameWindowController = uiGameWindowController;
-        _uiGameWindowController.OnAddBodyPart.AddListener(AddBodyPart);
+        uiGameWindowController.OnAddBodyPart.AddListener(AddBodyPart);
 
-        _uiDeathWindow = uiService.Get<UIDeathWindow>();
-        _uiWinWindow = uiService.Get<UIWinWindow>();
-        
-        _uiGameWindowController.OnResetAnimation.AddListener(ResetAnimation);
-        _uiDeathWindow.OnResetAnimation.AddListener(ResetAnimation);
-        _uiWinWindow.OnResetAnimation.AddListener(ResetAnimation);
+        uiGameWindowController.OnResetAnimation.AddListener(ResetAnimation);
+        uiDeathMenuController.OnResetAnimation.AddListener(ResetAnimation);
+        uiWinWindowController.OnResetAnimation.AddListener(ResetAnimation);
     }
 
     private void AddBodyPart()

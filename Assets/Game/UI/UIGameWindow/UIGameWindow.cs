@@ -15,7 +15,7 @@ namespace Game.UI
         [SerializeField] private Button buttonWithNumberSix;
         [SerializeField] private Button buttonWithNumberSeven;
         [SerializeField] private Button buttonWithNumberEight;
-        [SerializeField] private Button buttonWithNumerNine;
+        [SerializeField] private Button buttonWithNumberNine;
         [SerializeField] private Button buttonWithNumberZero;
         
         [SerializeField] private Button mainMenuButton;
@@ -23,10 +23,10 @@ namespace Game.UI
         [SerializeField] private Text equation;
         [SerializeField] private Text inputField;
 
-
         public override void Show()
         {
             ShowEvent?.Invoke(this, EventArgs.Empty);
+            
             gameObject.SetActive(true);
         
             buttonWithNumberOne.onClick.AddListener(OnOneOfTheNumberButtonClickEventHandler);
@@ -37,7 +37,7 @@ namespace Game.UI
             buttonWithNumberSix.onClick.AddListener(OnSixOfTheNumberButtonClickEventHandler);
             buttonWithNumberSeven.onClick.AddListener(OnSevenOfTheNumberButtonClickEventHandler);
             buttonWithNumberEight.onClick.AddListener(OnEightOfTheNumberButtonClickEventHandler);
-            buttonWithNumerNine.onClick.AddListener(OnNineOfTheNumberButtonClickEventHandler);
+            buttonWithNumberNine.onClick.AddListener(OnNineOfTheNumberButtonClickEventHandler);
             buttonWithNumberZero.onClick.AddListener(OnZeroOfTheNumberButtonClickEventHandler);
             
             mainMenuButton.onClick.AddListener(OnMenuButtonClickEventHandler);
@@ -46,6 +46,7 @@ namespace Game.UI
         public override void Hide()
         {
             HideEvent?.Invoke(this,EventArgs.Empty);
+            
             gameObject.SetActive(false);
             
             buttonWithNumberOne.onClick.RemoveListener(OnOneOfTheNumberButtonClickEventHandler);
@@ -56,11 +57,22 @@ namespace Game.UI
             buttonWithNumberSix.onClick.RemoveListener(OnSixOfTheNumberButtonClickEventHandler);
             buttonWithNumberSeven.onClick.RemoveListener(OnSevenOfTheNumberButtonClickEventHandler);
             buttonWithNumberEight.onClick.RemoveListener(OnEightOfTheNumberButtonClickEventHandler);
-            buttonWithNumerNine.onClick.RemoveListener(OnNineOfTheNumberButtonClickEventHandler);
+            buttonWithNumberNine.onClick.RemoveListener(OnNineOfTheNumberButtonClickEventHandler);
             buttonWithNumberZero.onClick.RemoveListener(OnZeroOfTheNumberButtonClickEventHandler);
             
             mainMenuButton.onClick.RemoveListener(OnMenuButtonClickEventHandler);
         }
+        public Text GetTheEquationText()
+        {
+            return equation;
+        }
+
+        public Text GetInputFiled()
+        {
+            return inputField;
+        }
+
+        #region ClickEvents
         public EventHandler OnMenuButtonClickEvent
         {
             get;
@@ -120,8 +132,9 @@ namespace Game.UI
             get;
             set;
         }
-    
-    
+        #endregion
+
+        #region ClickEventHandler
         private void OnOneOfTheNumberButtonClickEventHandler()
         {
             OnOneOfTheNumberButtonClickEvent?.Invoke(this,EventArgs.Empty);
@@ -167,15 +180,6 @@ namespace Game.UI
         {
             OnMenuButtonClickEvent?.Invoke(this,EventArgs.Empty);
         }
-
-        public Text GetTheEquationText()
-        {
-            return equation;
-        }
-
-        public Text GetInputFiled()
-        {
-            return inputField;
-        }
+        #endregion
     }
 }

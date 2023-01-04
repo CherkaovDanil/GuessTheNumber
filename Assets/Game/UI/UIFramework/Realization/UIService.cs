@@ -20,7 +20,6 @@ namespace Game.UI.UIFramework.Realization
             IInstantiator instantiator,
             IUIRoot uIRoot)
         {
-
             _instantiator = instantiator;
             _uIRoot = uIRoot;
         }
@@ -28,7 +27,7 @@ namespace Game.UI.UIFramework.Realization
         public T Show<T>() where T : UICanvasWindow
         {
             var window = Get<T>();
-            if(window!=null)
+            if(window != null)
             {
                 window.transform.SetParent(_uIRoot.Container);
                 window.Show();

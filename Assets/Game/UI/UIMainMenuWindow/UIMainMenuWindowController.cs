@@ -11,8 +11,7 @@ namespace Game.UI
         private readonly UIFadeController _uiFadeController;
 
         private UIMainMenuWindow _uiMainMenuWindow;
-        
-        
+
         public UIMainMenuWindowController(
             IUIService uiService,
             UIGameWindowController uiGameWindowController, 

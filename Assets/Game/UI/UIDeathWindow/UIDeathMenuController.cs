@@ -1,10 +1,13 @@
 ﻿using System;
 using Game.UI.UIFramework.Interfaces;
+using UnityEngine.Events;
 
 namespace Game.UI
 {
     public class UIDeathMenuController
     {
+        public UnityEvent OnResetAnimation = new UnityEvent();
+        
         private readonly IUIService _uiService;
         private readonly UIGameWindowController _uiGameWindowController;
 
@@ -24,12 +27,16 @@ namespace Game.UI
         
         private void OnMenuButtonClickEventHandler(object sender, EventArgs e)
         {
+            OnResetAnimation.Invoke();
+            
             _uiService.Hide<UIDeathWindow>();
             _uiService.Show<UIMainMenuWindow>();
         }
         
         private void OnPlayAgainButtonClickEventHandler(object sender, EventArgs e)
         {
+            OnResetAnimation.Invoke();
+            
             _uiService.Hide<UIDeathWindow>();
             _uiService.Show<UIGameWindow>();
             

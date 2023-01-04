@@ -59,7 +59,6 @@ namespace Game.UI.UIFramework.Installer
                 .Bind<UIFadeController>()
                 .AsSingle()
                 .NonLazy();
-            
         }
     }
 }
