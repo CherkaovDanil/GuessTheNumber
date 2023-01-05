@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using Game.UI.UIFramework.Interfaces;
-using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-namespace Game.UI
+namespace Game.UI.UIGameWindow
 {
     public class UIGameWindowController
     {
@@ -17,7 +16,7 @@ namespace Game.UI
         
         private readonly IUIService _uiService;
 
-        private UIGameWindow _uiGameWindow;
+        private UI.UIGameWindow.UIGameWindow _uiGameWindow;
         
         private Text _multipliedNumberText;
         private Text _inputField;
@@ -34,7 +33,7 @@ namespace Game.UI
         {
             _uiService = uiService;
 
-            _uiGameWindow = _uiService.Get<UIGameWindow>();
+            _uiGameWindow = _uiService.Get<UI.UIGameWindow.UIGameWindow>();
 
             _multipliedNumberText = _uiGameWindow.GetTheEquationText();
             _inputField = _uiGameWindow.GetInputFiled();
@@ -70,9 +69,8 @@ namespace Game.UI
             var secondNumber = Random.Range(0, 100);
 
             _multipliedNumber = (firstNumber * secondNumber).ToString();
-            
-            //todo remove mult number
-            _multipliedNumberText.text = $"{firstNumber} x {secondNumber} = {_multipliedNumber}";
+
+            _multipliedNumberText.text = $"{firstNumber} x {secondNumber} = ";
 
             for (int i = 0; i < _multipliedNumber.Length; i++)
             {
@@ -88,8 +86,8 @@ namespace Game.UI
         private void OnMenuButtonClickEventHandler(object sender, EventArgs e)
         {
             OnResetAnimation.Invoke();
-            _uiService.Hide<UIGameWindow>();
-            _uiService.Show<UIMainMenuWindow>();
+            _uiService.Hide<UI.UIGameWindow.UIGameWindow>();
+            _uiService.Show<UIMainMenuWindow.UIMainMenuWindow>();
         }
 
 
@@ -118,7 +116,7 @@ namespace Game.UI
         private void EndGame()
         {
             _uiService.Hide<UIGameWindow>();
-            _uiService.Show<UIDeathWindow>();
+            _uiService.Show<UIDeathWindow.UIDeathWindow>();
         }
 
         private void PrintTheNumber(int number)
@@ -150,8 +148,8 @@ namespace Game.UI
 
             if (!listOfNumbersString.Contains("_ "))
             {
-                _uiService.Hide<UIGameWindow>();
-                _uiService.Show<UIWinWindow>();
+                _uiService.Hide<UI.UIGameWindow.UIGameWindow>();
+                _uiService.Show<UIWinWindow.UIWinWindow>();
             }
         }
         

@@ -1,4 +1,5 @@
-﻿using Game.UI.UIFramework.Interfaces;
+﻿using Game.Scripts;
+using Game.UI.UIFramework.Interfaces;
 using UnityEngine;
 
 namespace Game.UI.UIFramework

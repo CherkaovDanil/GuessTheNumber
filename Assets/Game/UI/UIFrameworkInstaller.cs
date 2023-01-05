@@ -1,21 +1,24 @@
 using ArcadeSnake;
+using Game.UI.UIDeathWindow;
+using Game.UI.UIFade;
 using Game.UI.UIFramework.Interfaces;
 using Game.UI.UIFramework.Realization;
-using UnityEngine;
+using Game.UI.UIGameWindow;
+using Game.UI.UIMainMenuWindow;
+using Game.UI.UIRulesWindow;
+using Game.UI.UIWinWindow;
 using Zenject;
 
 namespace Game.UI.UIFramework.Installer 
 {
-    public class UIFrameworkInstaller : MonoInstaller
+    public class UIFrameworkInstaller : Installer<UIFrameworkInstaller>
     {
-        [SerializeField] private UIRoot uiRootPrefab;
-
         public override void InstallBindings()
         {
             Container
                 .Bind<IUIRoot>()
                 .To<UIRoot>()
-                .FromComponentInNewPrefab(uiRootPrefab)
+                .FromComponentInNewPrefabResource("UIRoot")
                 .AsSingle()
                 .NonLazy();
 

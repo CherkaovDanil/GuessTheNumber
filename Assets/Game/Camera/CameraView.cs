@@ -1,8 +1,9 @@
 ﻿using System;
+using Game.Scripts;
 using UnityEngine;
 using Zenject;
 
-namespace Game
+namespace Game.Camera
 {
     public class CameraView : MonoBehaviour, IDisposable, IPoolable<SceneObjectProtocol, IMemoryPool>
     {

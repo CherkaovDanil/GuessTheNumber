@@ -1,9 +1,8 @@
-﻿using System;
-using DG.Tweening;
+﻿using DG.Tweening;
 using Game.UI.UIFramework.Interfaces;
 using UnityEngine.UI;
 
-namespace Game.UI
+namespace Game.UI.UIFade
 {
     public class UIFadeController
     {

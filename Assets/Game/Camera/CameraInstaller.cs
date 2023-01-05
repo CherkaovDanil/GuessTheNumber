@@ -1,24 +1,21 @@
-﻿using UnityEngine;
+﻿using Game.Scripts;
 using Zenject;
 
-namespace Game
+namespace Game.Camera
 {
-    public class CameraInstaller: MonoInstaller<CameraInstaller>
+    public class CameraInstaller: Installer<CameraInstaller>
     {
-        [SerializeField] private CameraView cameraView;
-        [SerializeField] private CameraViewProtocolConfig protocolConfig;
-        
         public override void InstallBindings()
         {
             Container
                 .Bind<CameraViewProtocolConfig>()
-                .FromScriptableObject(protocolConfig)
+                .FromScriptableObjectResource("CameraViewProtocolConfig")
                 .AsSingle();
 
             Container
                 .BindFactory<SceneObjectProtocol, CameraView, CameraView.Factory>()
                 .FromMonoPoolableMemoryPool(
-                    x => x.FromComponentInNewPrefab(cameraView));
+                    x => x.FromComponentInNewPrefabResource("Main Camera"));
 
             Container
                 .Bind<CameraController>()

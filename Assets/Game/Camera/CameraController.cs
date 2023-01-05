@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
-namespace Game
+
+namespace Game.Camera
 {
     public class CameraController
     {

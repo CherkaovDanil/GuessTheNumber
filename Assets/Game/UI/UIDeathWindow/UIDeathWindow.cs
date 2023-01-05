@@ -1,10 +1,9 @@
 ﻿using System;
 using Game.UI.UIFramework.Realization;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace Game.UI
+namespace Game.UI.UIDeathWindow
 {
     public class UIDeathWindow : UICanvasWindow
     {

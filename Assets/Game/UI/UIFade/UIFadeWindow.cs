@@ -3,7 +3,7 @@ using Game.UI.UIFramework.Realization;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Game.UI
+namespace Game.UI.UIFade
 {
     public class UIFadeWindow : UICanvasWindow
     {

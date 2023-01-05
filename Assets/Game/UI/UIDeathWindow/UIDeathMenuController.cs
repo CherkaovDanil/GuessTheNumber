@@ -1,8 +1,9 @@
 ﻿using System;
 using Game.UI.UIFramework.Interfaces;
+using Game.UI.UIGameWindow;
 using UnityEngine.Events;
 
-namespace Game.UI
+namespace Game.UI.UIDeathWindow
 {
     public class UIDeathMenuController
     {
@@ -30,7 +31,7 @@ namespace Game.UI
             OnResetAnimation.Invoke();
             
             _uiService.Hide<UIDeathWindow>();
-            _uiService.Show<UIMainMenuWindow>();
+            _uiService.Show<UIMainMenuWindow.UIMainMenuWindow>();
         }
         
         private void OnPlayAgainButtonClickEventHandler(object sender, EventArgs e)
@@ -38,7 +39,7 @@ namespace Game.UI
             OnResetAnimation.Invoke();
             
             _uiService.Hide<UIDeathWindow>();
-            _uiService.Show<UIGameWindow>();
+            _uiService.Show<UIGameWindow.UIGameWindow>();
             
             _uiGameWindowController.StartNewGame();
         }

@@ -3,7 +3,7 @@ using Game.UI.UIFramework.Realization;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Game.UI
+namespace Game.UI.UIGameWindow
 {
     public class UIGameWindow : UICanvasWindow
     {
